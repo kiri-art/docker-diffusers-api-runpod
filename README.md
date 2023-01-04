@@ -23,3 +23,17 @@ $ docker push user/runpod:sd-v2-1-512
 
 See https://forums.kiri.art/t/running-on-runpod-io/102?u=gadicc
 for deployment instructions.
+
+# More full examples
+
+Download AnimeAnything v3, from `diffusers` branch / revision on HuggingFace,
+which is an `fp16` model, and is already prebuilt on our own S3-storage
+in the default location.
+
+```bash
+$ ./build.sh -t user/runpod:sd-v2-1-512 \
+  --build-arg MODEL_ID="Linaqruf/anything-v3.0" \
+  --build-arg MODEL_PRECISION="fp16" \
+  --build-arg MODEL_REVISION="diffusers" \
+  --build-arg MODEL_URL="s3://"
+```

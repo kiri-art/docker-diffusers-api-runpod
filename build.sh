@@ -1,6 +1,6 @@
 #!/bin/sh
 
-if [ -n $1 ]; then
+if [ -z "$1" ]; then
   echo "build.sh usage:"
   echo ""
   echo 'Set any env variables (see script) and then e.g.:'
