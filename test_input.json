@@ -1,0 +1,9 @@
+{
+    "input": {
+        "modelInputs": {
+            "prompt": "realistic field of grass",
+            "num_inference_steps": 20
+        },
+        "callInputs": {}
+    }
+}

@@ -4,7 +4,10 @@ import runpod
 import app as user_src
 import traceback
 import json
+import asyncio
+import nest_asyncio
 
+nest_asyncio.apply()
 
 ## Load models into VRAM here so they can be warm between requests
 user_src.init()
@@ -25,8 +28,10 @@ def handler(job):
     print(type(inputs))
     print(inputs)
 
+    loop = asyncio.get_event_loop()
+
     try:
-        output = user_src.inference(input)
+        output = loop.run_until_complete(user_src.inference(input, None))
     except Exception as err:
         output = {
             "$error": {

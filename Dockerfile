@@ -35,13 +35,17 @@ ARG http_proxy
 ARG https_proxy
 ARG REQUESTS_CA_BUNDLE=${http_proxy:+/usr/local/share/ca-certificates/squid-self-signed.crt}
 
-RUN pip install runpod
 RUN python3 download.py
+RUN pip install runpod==0.9.10 nest_asyncio
 
 ARG SAFETENSORS_FAST_GPU=1
 ENV SAFETENSORS_FAST_GPU=${SAFETENSORS_FAST_GPU}
 
 ADD handler.py .
+
+# Uncomment this to perform a basic local test on run (then exit)
+# ADD test_input.json .
+
 # CMD [ "python", "-u", "handler.py" ] # <-- doesn't honor SHELL
 CMD python -u handler.py               # <--    does honor SHELL
 
